@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #wrap {
+      width: 100px;
+      height: 100px;
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <!-- 连续发生的事件在n秒内只执行一次函数 -->
+  <div id="wrap" draggable="true"></div>
+  <script>
+    const oWrap = document.getElementById('wrap')
+    // let timer
+    // oWrap.ondrag = function (e) {
+    //   if (timer) { 
+    //     return
+    //   }
+    //   timer = setTimeout(() => {
+    //     console.log(e.offsetX, e.offsetY)
+    //     timer = null
+    //   }, 500)
+    // }
+
+    function throttle (fn, delay = 300) {
+      let timer
+      return function (...args) {
+        console.log(...args)
+        if (timer) {
+          return
+        }
+        timer = setTimeout(() => {
+          fn(...args)
+          timer = null
+        }, delay)
+      }
+    }
+    oWrap.addEventListener('drag', throttle(function (e) {
+      console.log(e.offsetX, e.offsetY)
+    }), 500)
+  </script>
+</body>
+</html>
