@@ -149,6 +149,86 @@
         return -1
       }
 
+      // 6. update方法
+      DoublyLinkedList.prototype.update = function (position, newData) {
+        // 越界判断
+        if (position < 0 || position >= this.length) return false
+
+        // 寻找正确的节点
+        var current = this.head
+        var index = 0
+        while (index++ < position) {
+          current = current.next
+        }
+
+        // 修改找到节点的data信息
+        current.data = newData
+      }
+
+      // 7. removeAt方法
+      DoublyLinkedList.prototype.removeAt = function (position) {
+        // 越界判断
+        if (position < 0 || position >= this.length) return null
+
+        // 判断是否只有一个节点
+        var current = this.head
+        if (this.length == 1) {
+          this.head = null
+          this.tail = null
+        } else {
+          if (position == 0) { // 判断是否删除的是第一个节点
+            this.head.next.prev = null
+            this.head = this.head.next
+          } else if (position == this.length - 1) { // 最后节点
+            current = this.tail
+            this.tail.prev.next = null
+            this.tail = this.tail.prev
+          } else {
+            var index = 0
+
+            while (index++ < position) {
+              current = current.next
+            }
+
+            current.prev.next = current.next
+            current.next.prev = current.prev
+          }
+        }
+
+        // length - 1
+        this.length -= 1
+        return current.data
+      }
+
+      // 8. remove方法
+      DoublyLinkedList.prototype.remove = function (data) {
+        // 根据data获取下标值
+        var index = this.indexOf(data)
+
+        // 根据index删除对应位置的节点
+        return this.removeAt(index)
+      }
+
+      // 9. isEmpty方法
+      DoublyLinkedList.prototype.isEmpty = function () {
+        return this.length == 0
+      }
+
+      // 10. size方法
+      DoublyLinkedList.prototype.size = function () {
+        return this.length
+      }
+
+      // 11. 获取链表的第一个元素
+      DoublyLinkedList.prototype.getHead = function () {
+        return this.head.data
+      }
+
+      // 12. 获取链表的最后一个元素
+      DoublyLinkedList.prototype.getTail = function () {
+        return this.tail.data
+      }
+
     }
     // 测试代码
     // 1. 创建LinkedList
@@ -173,6 +253,25 @@
 
     // 5. 测试indexOf方法
     // alert(list.indexOf('c'))
+
+    // 6. 测试update方法
+    // list.update(2, 'w')
+    // alert(list)
+
+    // 7. 测试removeAt方法
+    // list.removeAt(1)
+    // alert(list)
+
+    // 8. 测试remove方法
+    // list.remove('b')
+    // alert(list)
+
+    // 9. 测试其它方法
+    // alert(list.isEmpty())
+    // alert(list.size())
+    // alert(list.getHead())
+    // alert(list.getTail())
+    
 
   </script>
 </body>
