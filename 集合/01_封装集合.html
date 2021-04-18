@@ -57,6 +57,37 @@
       Set.prototype.values = function () {
         return Object.keys(this.items)
       }
+
+      // 集合间的操作
+      // 并集
+      Set.prototype.union = function (otherSet) {
+        // this: 集合对象A
+        // otherSet: 集合对象B
+        // 创建新的集合
+        var unionSet = new Set()
+
+        // 将A集合中所有的元素添加到新集合中
+        var values = this.values()
+        for (var i = 0; i < values.length; i++) {
+          unionSet.add(values[i])
+        }
+        
+        // 取出B集合中元素 判断是否需要添加到新集合
+        values = otherSet.values()
+        for (var i = 0; i < values.length; i++) {
+          unionSet.add(values[i])
+        }
+        
+        return unionSet
+      }
+
+      // 交集
+      Set.prototype.intersection = function (otherSet) {
+        // 创建新的集合
+        var intersection = new Set()
+
+        // 从A
+      }
     }
 
     // 测试Set类
@@ -69,14 +100,22 @@
     set.add('b')
     set.add('c')
     alert(set.values())
-    alert(set.has('b'))
+    // alert(set.has('b'))
 
-    set.remove('b')
-    alert(set.values())
+    // set.remove('b')
+    // alert(set.values())
 
-    set.clear()
-    alert(set.values())
-    alert(set.size())
+    // set.clear()
+    // alert(set.values())
+    // alert(set.size())
+
+    // 并集
+    // var otherSet = new Set()
+    // otherSet.add('a')
+    // otherSet.add('s')
+    // otherSet.add('d')
+    // unionSet = set.union(otherSet)
+    // alert(unionSet.values())
   </script>
 </body>
 </html>
