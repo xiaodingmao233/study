@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- flexbox解决方案 -->
+<section class="layout flexbox">
+  <style>
+      .layout.flexbox {
+          margin-top: 140px;
+      }
+
+      .layout.flexbox .left-center-right {
+          display: flex;
+      }
+
+      .layout.flexbox .left {
+          width: 300px;
+          background: red;
+      }
+
+      .layout.flexbox .center {
+          flex: 1;
+          background: yellow;
+      }
+
+      .layout.flexbox .right {
+          width: 300px;
+          background: blue;
+      }
+  </style>
+  <article class="left-center-right">
+      <div class="left"></div>
+      <div class="center">
+          <h1>flexbox的解决方案</h1>
+          <p>1.这是布局的中间部分</p>
+          <p>2.这是布局的中间部分</p>
+      </div>
+      <div class="right"></div>
+  </article>
+</section>
+</body>
+</html>
